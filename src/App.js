@@ -9,6 +9,7 @@ import {
 import { Navbar } from "./app/Navbar";
 
 import SearchPosts from "./features/posts/SearchPosts";
+import EditPostForm from "./features/posts/EditPostForm"
 
 function App() {
   return (
@@ -16,15 +17,9 @@ function App() {
       <Navbar />
       <div className="App">
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <React.Fragment>
-                <SearchPosts />
-              </React.Fragment>
-            )}
-          />
+          <Route exact path="/" component={SearchPosts} />
+          <Route exact path="/edit" component={EditPostForm} />
+          <Route exact path="/edit/:postId" component={EditPostForm} />
           <Redirect to="/" />
         </Switch>
       </div>

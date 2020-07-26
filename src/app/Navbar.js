@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
   return (
@@ -7,7 +8,10 @@ export const Navbar = () => {
         <h1 style={{ textAlign: "center" }}>Posts Management</h1>
 
         <div className="navContent">
-          <div className="navLinks"></div>
+          <div className="navLinks">
+            <Link to="/">Search Posts</Link>
+            <Link to="/edit">Edit Post</Link>
+          </div>
         </div>
       </section>
     </nav>

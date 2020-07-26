@@ -1,14 +1,46 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-const initialState = [
-  { id: "1", title: "First Post!", content: "Hello!" },
-  { id: "2", title: "Second Post", content: "More text" },
-];
+const initialState = {
+  actualPosts: [],
+  status: 'idle',
+  error: null
+}
+
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
+  const response = await fetch('http://jsonplaceholder.typicode.com/posts')
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  } else {
+    return await response.json();
+  }
+})
 
 const postsSlice = createSlice({
-  name: "posts",
+  name: 'posts',
   initialState,
-  reducers: {},
-});
+  reducers: {
+    postUpdated(state, action) {
+      const { id, title } = action.payload
+      const existingPost = state.actualPosts.find(post => post.id === id)
+      if (existingPost) {
+        existingPost.title = title
+      }
+    }
+  },
+  extraReducers: {
+    [fetchPosts.pending]: (state, action) => {
+      state.status = 'loading'
+    },
+    [fetchPosts.fulfilled]: (state, action) => {
+      state.status = 'succeeded'
+      state.actualPosts = state.actualPosts.concat(action.payload)
+    },
+    [fetchPosts.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.payload
+    }
+  },
+})
 
-export default postsSlice.reducer;
+export const { postUpdated } = postsSlice.actions
+export default postsSlice.reducer
