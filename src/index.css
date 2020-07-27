@@ -7,13 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 p {
-  font-size: 1.1rem;
+  font-size: 18px;
 }
 
 /* Navbar */
@@ -41,10 +36,6 @@ nav a:active {
   background: #481499;
 }
 
-nav a:first-of-type {
-  margin-left: -1.5rem;
-}
-
 nav a:hover {
   color: white;
   background: #926bcf;
@@ -53,6 +44,7 @@ nav a:hover {
 .navContent {
   display: flex;
   justify-content: center;
+  margin-top: 30px;
 }
 
 .navLinks {
@@ -76,6 +68,7 @@ nav a:hover {
   margin: 10px 30px 0 132px;
   height: 45px;
   width: 400px;
+  padding: 10px;
 }
 /* Edit Form */
 .editForm {
@@ -95,54 +88,23 @@ nav a:hover {
 #postTitle {
   height: 45px;
 }
+#postBody {
+  height: 130px;
+}
 #postTitle,
-#postContent {
-  width: 700px;
+#postBody {
+  width: 600px;
+  padding: 10px;
 }
 
 /* Posts list */
-.post h2 {
-  font-size: 2.5rem;
-  margin-bottom: 5px;
-}
-
-.post-excerpt {
-  padding: 0.25rem 0.25rem;
-  border: 1px solid rgb(177, 174, 174);
+.post-details {
+  margin: 30px;
+  padding: 10px;
+  border: 1px solid #aeaeae;
   border-radius: 7px;
 }
 
-.posts-list .post-excerpt + .post-excerpt {
-  margin-top: 0.5rem;
-}
-
-.post-excerpt h3 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-p.post-content {
-  margin-top: 10px;
-}
-
-.button {
-  display: inline-block;
-  background: #1976d2;
-  color: white;
-  border-radius: 4px;
-  font-weight: 700;
-  padding: 0.75rem 1.5rem;
-}
-
-button:disabled,
-button:disabled:hover {
-  opacity: 0.5;
-}
-
-button.reaction-button {
-  border: 1px solid #e0e3e9;
-  padding: 5px 10px;
-  margin: 5px 6px 10px;
-  border-radius: 4px;
-  white-space: nowrap;
+.post-details h3 {
+  font-size: 25px;
 }

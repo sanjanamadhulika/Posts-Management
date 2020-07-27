@@ -1,8 +1,17 @@
-import React from "react";
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from "react";
+import { useSelector } from 'react-redux'
 
 const EditPostForm = (props) => {
     const postId = props.match.params.postId;
+    const post = useSelector(state =>
+        state.posts.actualPosts.find(post => post.id == postId)
+    )
+
+    const [title, setTitle] = useState(post ? post.title : "")
+    const [body, setBody] = useState(post ? post.body : "")
+
+    const onTitleChanged = e => setTitle(e.target.value)
+    const onBodyChanged = e => setBody(e.target.value)
 
     return (
         <section className="editForm">
@@ -13,14 +22,14 @@ const EditPostForm = (props) => {
                     type="text"
                     id="postTitle"
                     name="postTitle"
-                    placeholder="What's on your mind?"
-
+                    value={title}
 
                 />
-                <label htmlFor="postContent">Content:</label>
+                <label htmlFor="postBody">Content:</label>
                 <textarea
-                    id="postContent"
-                    name="postContent"
+                    id="postBody"
+                    name="postBody"
+                    value={body}
 
 
                 />
