@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux'
+import Button from '@material-ui/core/Button';
 
 import PostsList from "./PostsList";
 
@@ -10,18 +11,29 @@ const SearchPosts = () => {
   const handleChange = (event) => {
     setTitle(event.target.value);
   }
+
+  const posts = useSelector(state => state.posts)
+  const filteredPosts = posts.actualPosts.filter(post => post.title.includes(title))
+  const autoComplete = filteredPosts.map(post =>
+    <option value={post.title} />
+  )
+
   const handleClick = (event) => {
     setTitleToSearch(title)
   }
+
   return (
     <div>
       <div id="search">
         <h2>Search Title</h2>
-        <input type="text" id="search-textbox" value={title} onChange={handleChange} />
+        <input list="search_suggest" type="text" id="search-textbox" value={title} onChange={handleChange} />
+        <datalist id="search_suggest">
+          {autoComplete}
+        </datalist>
 
-        <button className="btn btn-primary btn-lg" onClick={handleClick}>
+        <Button variant="contained" color="primary" size="large" onClick={handleClick}>
           Search
-        </button>
+        </Button>
       </div>
 
       <PostsList tileToSearch={tileToSearch} />
