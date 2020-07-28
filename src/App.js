@@ -6,10 +6,10 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { Navbar } from "./app/Navbar";
+import Navbar from "./app/Navbar";
 
-import SearchPosts from "./features/posts/SearchPosts";
-import EditPostForm from "./features/posts/EditPostForm"
+import SearchPosts from "./posts/SearchPosts";
+import EditPostForm from "./posts/EditPostForm"
 
 function App() {
   return (

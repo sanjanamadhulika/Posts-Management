@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import PostsList from "./PostsList";
 
 const SearchPosts = () => {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState();
   const [tileToSearch, setTitleToSearch] = useState();
 
   const handleChange = (event) => {
@@ -18,7 +18,7 @@ const SearchPosts = () => {
     <option value={post.title} />
   )
 
-  const handleClick = (event) => {
+  const handleClick = () => {
     setTitleToSearch(title)
   }
 
@@ -26,12 +26,12 @@ const SearchPosts = () => {
     <div>
       <div id="search">
         <h2>Search Title</h2>
-        <input list="search_suggest" type="text" id="search-textbox" value={title} onChange={handleChange} />
+        <input list="search_suggest" type="text" id="search-textbox" placeholder="Search Title" value={title} onChange={handleChange} />
         <datalist id="search_suggest">
           {autoComplete}
         </datalist>
 
-        <Button variant="contained" color="primary" size="large" onClick={handleClick}>
+        <Button variant="contained" color="primary" size="large" data-testid="search-button" onClick={handleClick}>
           Search
         </Button>
       </div>

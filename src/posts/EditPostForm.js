@@ -35,7 +35,6 @@ const EditPostForm = (props) => {
     const onGetBodyClicked = () => {
         const filteredPost = posts.actualPosts.find(post => post.title == title)
         setBody(filteredPost.body)
-        console.log(filteredPost);
     }
 
     return (
