@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux'
 
 const PostsList = (props) => {
-    const posts = useSelector(state => state.posts)
-    const filteredPost = posts.actualPosts.filter(post => post.title.includes(props.tileToSearch))
+    const posts = useSelector(state => state.actualPosts)
+    const filteredPost = posts.filter(post => post.title.includes(props.tileToSearch))
 
     const renderedPosts = filteredPost.map(post => (
         <article id={post.id} className="post-details">

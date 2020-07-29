@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-import { postUpdated } from './postsSlice'
+import { postUpdated } from '../redux/postActions'
 
 const EditPostForm = (props) => {
-    const posts = useSelector(state => state.posts)
+    const posts = useSelector(state => state.actualPosts)
     const postId = props.match.params.postId;
 
-    const post = posts.actualPosts.find(post => post.id == postId)
+    const post = posts.find(post => post.id === parseInt(postId))
 
     const [title, setTitle] = useState(post ? post.title : "")
     const [body, setBody] = useState(post ? post.body : "")
@@ -27,14 +27,18 @@ const EditPostForm = (props) => {
         }
     }
 
-    const filteredPosts = posts.actualPosts.filter(post => post.title.includes(title))
+    const filteredPosts = (title !== "" && title !== " ") ? posts.filter(post => post.title.includes(title)) : []
     const autoComplete = filteredPosts.map(post =>
         <option value={post.title} />
     )
 
     const onGetBodyClicked = () => {
-        const filteredPost = posts.actualPosts.find(post => post.title == title)
-        setBody(filteredPost.body)
+        const filteredPost = posts.find(post => post.title === title)
+        if (filteredPost) {
+            setBody(filteredPost.body)
+        } else {
+            setBody("")
+        }
     }
 
     return (
@@ -53,7 +57,7 @@ const EditPostForm = (props) => {
                 <datalist id="search_suggest">
                     {autoComplete}
                 </datalist>
-                <Button variant="contained" color="primary" size="small" style={{ margin: "0 10px" }} onClick={onGetBodyClicked}>
+                <Button variant="contained" size="small" style={{ margin: "0 10px" }} onClick={onGetBodyClicked}>
                     Get Body
                 </Button>
                 <label htmlFor="postBody">Post Body:</label>
@@ -64,7 +68,7 @@ const EditPostForm = (props) => {
                     onChange={onBodyChanged}
                 />
             </form>
-            <Button variant="contained" color="primary" size="large" onClick={onSavePostClicked}>
+            <Button variant="contained" size="large" onClick={onSavePostClicked}>
                 Save Post
             </Button>
         </section>

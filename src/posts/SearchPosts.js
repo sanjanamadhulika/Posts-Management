@@ -5,15 +5,15 @@ import Button from '@material-ui/core/Button';
 import PostsList from "./PostsList";
 
 const SearchPosts = () => {
-  const [title, setTitle] = useState();
+  const [title, setTitle] = useState('');
   const [tileToSearch, setTitleToSearch] = useState();
 
   const handleChange = (event) => {
     setTitle(event.target.value);
   }
 
-  const posts = useSelector(state => state.posts)
-  const filteredPosts = posts.actualPosts.filter(post => post.title.includes(title))
+  const posts = useSelector(state => state.actualPosts)
+  const filteredPosts = (title !== "" && title !== " ") ? posts.filter(post => post.title.includes(title)) : []
   const autoComplete = filteredPosts.map(post =>
     <option value={post.title} />
   )
@@ -31,7 +31,7 @@ const SearchPosts = () => {
           {autoComplete}
         </datalist>
 
-        <Button variant="contained" color="primary" size="large" data-testid="search-button" onClick={handleClick}>
+        <Button variant="contained" size="large" data-testid="search-button" onClick={handleClick}>
           Search
         </Button>
       </div>

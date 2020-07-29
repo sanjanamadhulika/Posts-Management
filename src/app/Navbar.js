@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <nav>
       <section>
-        <h1 style={{ textAlign: "center" }}>Posts Management</h1>
+        <h1>Posts Management</h1>
 
         <div className="navContent">
           <div className="navLinks">
