@@ -3,16 +3,16 @@ import * as types from './postTypes'
 
 describe('actions', () => {
     it('update the post', () => {
-        const post = {
+        const updatedPost = {
             id: 1,
             title: 'This is updated test title',
             body: 'This is updated test body'
         }
         const expectedAction = {
             type: types.POST_UPDATED,
-            payload: post
+            payload: updatedPost
         }
-        expect(actions.postUpdated(post)).toEqual(expectedAction)
+        expect(actions.postUpdated(updatedPost)).toEqual(expectedAction)
     })
     it('fetching post request', () => {
         const expectedAction = {
@@ -26,14 +26,14 @@ describe('actions', () => {
             {
                 userId: 1,
                 id: 1,
-                title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-                body: "quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto"
+                title: "This is the title given by user with id 1",
+                body: "This is the body given by user with id 1"
             },
             {
                 userId: 1,
                 id: 2,
-                title: "qui est esse",
-                body: "est rerum tempore vitae sequi sint nihil reprehenderit dolor beatae ea dolores neque fugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis qui aperiam non debitis possimus qui neque nisi nulla"
+                title: "This is the title given by user with id 2",
+                body: "This is the body given by user with id 2"
             }
         ]
         const expectedAction = {

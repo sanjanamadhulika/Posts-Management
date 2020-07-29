@@ -26,8 +26,8 @@ const postReducer = (state = initialState, action) => {
                 const copyOfActualPosts = state.actualPosts.slice()
                 copyOfActualPosts.splice(indexOfExistingPost, 1, copyOfPost)
                 return {
-                    status: state.status,
                     actualPosts: copyOfActualPosts,
+                    status: state.status,
                     error: state.error
                 }
             } else {
@@ -35,21 +35,21 @@ const postReducer = (state = initialState, action) => {
             }
         case FETCH_POST_REQUEST:
             return {
-                status: 'loading',
                 actualPosts: [],
+                status: 'loading',
                 error: null,
             };
 
         case FETCH_POST_SUCCESS:
             return {
-                status: 'succeeded',
                 actualPosts: action.payload,
+                status: 'succeeded',
                 error: null,
             };
         case FETCH_POST_FALIURE:
             return {
-                status: 'failed',
                 actualPosts: [],
+                status: 'failed',
                 error: action.payload,
             };
         default:
