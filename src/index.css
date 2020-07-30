@@ -51,7 +51,7 @@ nav section {
 nav a,
 nav a:active {
   font-weight: 700;
-  padding: 0.25rem 1.5rem;
+  padding: 10px 22px;
   border-radius: 4px;
   color: white !important;
   background: #481499;
@@ -75,6 +75,12 @@ nav a:hover,
   width: 400px;
   padding: 10px;
 }
+.not-found {
+  text-align: center;
+  margin-top: 30px;
+  font-size: large;
+  color: #481499;
+}
 #search button,
 .editForm button {
   background-color: #481499;
@@ -85,6 +91,10 @@ nav a:hover,
   margin-top: 35px;
   text-align: center;
 }
+.editForm form {
+  margin-top: 35px;
+}
+
 .editForm label {
   display: block;
   font-size: 25px;
@@ -118,4 +128,10 @@ nav a:hover,
 
 .post-details h3 {
   font-size: 25px;
+}
+.post-detail a {
+  cursor: pointer;
+}
+.post-details:hover {
+  background-color: #ddccf3;
 }

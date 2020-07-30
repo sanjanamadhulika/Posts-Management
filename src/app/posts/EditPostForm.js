@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-import { postUpdated } from '../redux/postActions'
+import { postUpdated } from '../../redux/postActions'
+import AutoComplete from './AutoComplete'
 
 const EditPostForm = (props) => {
     const posts = useSelector(state => state.actualPosts)
@@ -27,11 +28,6 @@ const EditPostForm = (props) => {
         }
     }
 
-    const filteredPosts = (title !== "" && title !== " ") ? posts.filter(post => post.title.includes(title)) : []
-    const autoComplete = filteredPosts.map(post =>
-        <option value={post.title} />
-    )
-
     const onGetBodyClicked = () => {
         const filteredPost = posts.find(post => post.title === title)
         if (filteredPost) {
@@ -43,23 +39,24 @@ const EditPostForm = (props) => {
 
     return (
         <section className="editForm">
-            <h2>Edit Post</h2>
+            <h2>You can Edit Post here</h2>
             <form>
                 <label htmlFor="postTitle">Post Title:</label>
                 <input
-                    list="search_suggest"
+                    list="edit_suggest"
                     type="text"
                     id="postTitle"
                     name="postTitle"
+                    placeholder="Enter Title"
                     value={title}
                     onChange={onTitleChanged}
                 />
-                <datalist id="search_suggest">
-                    {autoComplete}
-                </datalist>
+                <AutoComplete title={title} id="edit_suggest" />
+
                 <Button variant="contained" size="small" style={{ margin: "0 10px" }} onClick={onGetBodyClicked}>
                     Get Body
                 </Button>
+
                 <label htmlFor="postBody">Post Body:</label>
                 <textarea
                     id="postBody"

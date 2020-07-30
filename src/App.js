@@ -8,8 +8,8 @@ import {
 
 import Navbar from "./app/Navbar";
 
-import SearchPosts from "./posts/SearchPosts";
-import EditPostForm from "./posts/EditPostForm"
+import SearchPosts from "./app/posts/SearchPosts";
+import EditPostForm from "./app/posts/EditPostForm"
 
 function App() {
   return (
