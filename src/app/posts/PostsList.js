@@ -7,7 +7,7 @@ const PostsList = (props) => {
     const filteredPost = posts.filter(post => post.title.includes(props.tileToSearch))
 
     const renderedPosts = filteredPost.length !== 0 ? filteredPost.map(post => (
-        <article key={post.id} className="post-details">
+        <article key={post.id} className="post-details" data-testid="post-lists">
             <h3>{post.title}</h3>
             <p>{post.body}</p>
             <Link to={"edit/" + post.id}>Edit</Link>

@@ -53,7 +53,7 @@ const EditPostForm = (props) => {
                 />
                 <AutoComplete title={title} id="edit_suggest" />
 
-                <Button variant="contained" size="small" style={{ margin: "0 10px" }} onClick={onGetBodyClicked}>
+                <Button variant="contained" size="small" data-testid="get-body-button" style={{ margin: "0 10px" }} onClick={onGetBodyClicked}>
                     Get Body
                 </Button>
 
@@ -61,11 +61,12 @@ const EditPostForm = (props) => {
                 <textarea
                     id="postBody"
                     name="postBody"
+                    data-testid="postBody"
                     value={body}
                     onChange={onBodyChanged}
                 />
             </form>
-            <Button variant="contained" size="large" onClick={onSavePostClicked}>
+            <Button variant="contained" data-testid="save-post-button" size="large" onClick={onSavePostClicked}>
                 Save Post
             </Button>
         </section>
